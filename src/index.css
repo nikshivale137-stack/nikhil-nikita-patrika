@@ -1,0 +1,410 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Wedding Glassmorphism Design System - Nikhil & Nikita */
+
+@layer base {
+  :root {
+    /* Background gradients */
+    --background: 0 30% 96%;
+    --foreground: 0 15% 20%;
+
+    /* Wedding theme colors - Maroon & Gold */
+    --wedding-maroon: 0 100% 27%;
+    --wedding-gold: 43 74% 49%;
+    --wedding-cream: 35 25% 92%;
+    --wedding-deep-maroon: 0 100% 20%;
+    
+    /* Glass morphism variables */
+    --glass-bg: 0 0% 100% / 0.25;
+    --glass-border: 0 0% 100% / 0.18;
+    --glass-shadow: 0 0% 0% / 0.1;
+    
+    /* Card styles */
+    --card: 0 0% 100% / 0.3;
+    --card-foreground: 0 15% 20%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 15% 20%;
+
+    /* Primary - Wedding Maroon */
+    --primary: 0 100% 27%;
+    --primary-foreground: 35 25% 92%;
+
+    /* Secondary - Wedding Gold */
+    --secondary: 43 74% 49%;
+    --secondary-foreground: 0 100% 20%;
+
+    --muted: 35 25% 92%;
+    --muted-foreground: 0 15% 45%;
+
+    /* Accent - Light Gold */
+    --accent: 43 74% 85%;
+    --accent-foreground: 0 100% 20%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 35 25% 92%;
+
+    --border: 0 0% 100% / 0.18;
+    --input: 0 0% 100% / 0.25;
+    --ring: 43 74% 49%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background: linear-gradient(135deg, hsl(var(--wedding-maroon)) 0%, hsl(var(--wedding-deep-maroon)) 50%, hsl(var(--wedding-gold)) 100%);
+    min-height: 100vh;
+  }
+}
+
+@layer components {
+  /* Enhanced Glassmorphism base classes */
+  .glass {
+    background: hsla(var(--glass-bg));
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsla(var(--glass-border));
+    box-shadow: 0 8px 32px hsla(var(--glass-shadow));
+  }
+  
+  .glass-card {
+    @apply glass rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:scale-105;
+    background: rgba(139, 0, 0, 0.2);
+    border: 1px solid rgba(212, 175, 55, 0.3);
+  }
+  
+  .glass-hero {
+    @apply glass rounded-3xl p-6 md:p-12 text-center backdrop-blur-3xl;
+    background: rgba(139, 0, 0, 0.25);
+    border: 2px solid rgba(212, 175, 55, 0.4);
+    box-shadow: 0 16px 48px rgba(0, 0, 0, 0.4);
+  }
+  
+  /* Enhanced Wedding animations */
+  .fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-fade-in {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+  
+  .animate-scale-in {
+    animation: scaleIn 0.6s ease-out forwards;
+  }
+  
+  .float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .pulse-gold {
+    animation: pulseGold 2s ease-in-out infinite;
+  }
+  
+  .flame-animation {
+    animation: flameFlicker 1.5s ease-in-out infinite;
+    filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.8));
+  }
+  
+  /* Text effects for better contrast */
+  .text-shadow {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+  }
+  
+  /* Animation delays */
+  .delay-75 { animation-delay: 75ms; }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-150 { animation-delay: 150ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-700 { animation-delay: 700ms; }
+  .delay-1000 { animation-delay: 1000ms; }
+  .delay-1200 { animation-delay: 1200ms; }
+}
+
+@layer utilities {
+  .text-wedding-maroon {
+    color: hsl(var(--wedding-maroon));
+  }
+  
+  .text-wedding-gold {
+    color: hsl(var(--wedding-gold));
+  }
+  
+  .text-wedding-cream {
+    color: hsl(var(--wedding-cream));
+  }
+  
+  .bg-wedding-maroon {
+    background-color: hsl(var(--wedding-maroon));
+  }
+  
+  .bg-wedding-gold {
+    background-color: hsl(var(--wedding-gold));
+  }
+}
+
+/* Enhanced Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulseGold {
+  0%, 100% { 
+    color: hsl(var(--wedding-gold));
+    text-shadow: 0 0 10px hsla(var(--wedding-gold), 0.3);
+  }
+  50% { 
+    color: hsl(var(--wedding-gold));
+    text-shadow: 0 0 20px hsla(var(--wedding-gold), 0.6);
+  }
+}
+
+@keyframes flameFlicker {
+  0%, 100% {
+    transform: scaleY(1) scaleX(0.9);
+    opacity: 1;
+  }
+  25% {
+    transform: scaleY(1.1) scaleX(1);
+    opacity: 0.9;
+  }
+  50% {
+    transform: scaleY(0.9) scaleX(1.1);
+    opacity: 1;
+  }
+  75% {
+    transform: scaleY(1.2) scaleX(0.8);
+    opacity: 0.8;
+  }
+}
+
+/* Flame Animation for Samai/Jyoti */
+.flame-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flame {
+  width: 8px;
+  height: 20px;
+  background: linear-gradient(to top, hsl(var(--wedding-gold)), #ff6b35, #ff4757);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  animation: flicker 1.5s ease-in-out infinite alternate;
+  position: relative;
+}
+
+.flame-1 {
+  animation-delay: 0s;
+}
+
+.flame-2 {
+  animation-delay: 0.3s;
+}
+
+.flame-base {
+  width: 12px;
+  height: 6px;
+  background: hsl(var(--wedding-gold));
+  border-radius: 50%;
+  margin-top: -2px;
+}
+
+@keyframes flicker {
+  0% {
+    transform: rotate(-2deg) scale(1);
+    filter: brightness(1);
+  }
+  25% {
+    transform: rotate(2deg) scale(1.05);
+    filter: brightness(1.1);
+  }
+  50% {
+    transform: rotate(-1deg) scale(0.95);
+    filter: brightness(0.9);
+  }
+  75% {
+    transform: rotate(1deg) scale(1.02);
+    filter: brightness(1.05);
+  }
+  100% {
+    transform: rotate(-1deg) scale(1);
+    filter: brightness(1);
+  }
+}
+
+@keyframes scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-x-fast {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll-x {
+  animation: scroll-x 30s linear infinite;
+}
+
+.animate-scroll-x-fast {
+  animation: scroll-x-fast 15s linear infinite;
+}
+
+@keyframes scroll-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
+}
+
+.animate-scroll-infinite {
+  animation: scroll-infinite 8s linear infinite;
+  will-change: transform;
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  body {
+    overflow-x: hidden;
+  }
+  
+  .glass-hero {
+    padding: 1.5rem;
+  }
+  
+  .glass-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  /* Fix mobile overlapping issues */
+  .fade-in-up {
+    position: relative;
+    z-index: 1;
+  }
+  
+  /* Ensure proper spacing on mobile */
+  section {
+    margin-bottom: 2rem;
+  }
+  
+  /* Fix text overflow on mobile */
+  h1, h2, h3 {
+    word-wrap: break-word;
+    hyphens: auto;
+  }
+}
+
+/* Additional mobile fixes */
+@media (max-width: 640px) {
+  .glass-hero {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+  
+  /* Prevent horizontal scroll */
+  * {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+}
