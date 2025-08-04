@@ -103,6 +103,10 @@ export default {
 				'scroll-x-fast': {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-50%)' }
+				},
+				'scroll-infinite': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-50%)' }
 				}
 			},
 			animation: {
@@ -110,7 +114,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'scroll-x': 'scroll-x 25s linear infinite',
 				'scroll-x-fast': 'scroll-x-fast 15s linear infinite',
-				'scroll-x-mobile': 'scroll-x-fast 8s linear infinite'
+				'scroll-x-mobile': 'scroll-x-fast 8s linear infinite',
+				'scroll-infinite': 'scroll-infinite 10s linear infinite'
 			}
 		}
 	},

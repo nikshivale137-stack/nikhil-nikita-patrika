@@ -21,12 +21,12 @@ const ImageTicker = () => {
   const duplicatedImages = [...tickerImages, ...tickerImages, ...tickerImages, ...tickerImages];
 
   return (
-    <section className="w-full py-4 sm:py-6 md:py-8 bg-gradient-to-r from-wedding-deep-maroon via-wedding-maroon to-wedding-deep-maroon overflow-hidden">
-      <div className="text-center mb-4 sm:mb-6">
-        <h2 className="font-serif text-xl sm:text-2xl md:text-3xl text-wedding-gold mb-2 animate-fade-in">
+    <section className="w-full py-6 sm:py-8 md:py-10 bg-gradient-to-r from-wedding-deep-maroon via-wedding-maroon to-wedding-deep-maroon overflow-hidden">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="font-kavi text-2xl sm:text-3xl md:text-4xl text-wedding-gold mb-2 animate-fade-in">
           किलबिल परिवार
         </h2>
-        <div className="w-12 sm:w-16 h-1 bg-wedding-gold mx-auto animate-scale-in"></div>
+        <div className="w-16 sm:w-20 h-1 bg-wedding-gold mx-auto animate-scale-in"></div>
       </div>
 
       {/* Horizontal Scrolling Ticker */}
@@ -35,13 +35,13 @@ const ImageTicker = () => {
           {duplicatedImages.map((image, index) => (
             <div
               key={index}
-              className="flex-shrink-0 w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 lg:w-56 lg:h-56 xl:w-64 xl:h-64 mx-2 sm:mx-3 md:mx-4 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+              className="flex-shrink-0 w-36 h-48 sm:w-44 sm:h-56 md:w-52 md:h-64 lg:w-60 lg:h-72 xl:w-68 xl:h-80 mx-2 sm:mx-3 md:mx-4 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
               style={{ minWidth: 'fit-content' }}
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-contain bg-gradient-to-br from-wedding-cream/10 to-wedding-maroon/10"
+                className="w-full h-full object-cover bg-gradient-to-br from-wedding-cream/10 to-wedding-maroon/10"
                 loading="lazy"
                 onError={(e) => {
                   console.log('Image failed to load:', image.src);
@@ -50,11 +50,11 @@ const ImageTicker = () => {
             </div>
           ))}
         </div>
-      </div>
 
-      {/* Gradient Overlays for fade effect */}
-      <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 bg-gradient-to-r from-wedding-deep-maroon to-transparent pointer-events-none z-10"></div>
-      <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 bg-gradient-to-l from-wedding-deep-maroon to-transparent pointer-events-none z-10"></div>
+        {/* Gradient Overlays for fade effect */}
+        <div className="absolute left-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 bg-gradient-to-r from-wedding-deep-maroon to-transparent pointer-events-none z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-8 sm:w-12 md:w-16 bg-gradient-to-l from-wedding-deep-maroon to-transparent pointer-events-none z-10"></div>
+      </div>
     </section>
   );
 };

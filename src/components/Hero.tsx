@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import Countdown from "react-countdown";
 import { useAdminData } from "@/contexts/AdminContext";
 import mandalaPattern from "@/assets/mandala-pattern.png";
+import ganpatiImage from "@/assets/ganpati-new.png";
 
 const Hero = () => {
   const { adminData } = useAdminData();
@@ -57,23 +58,18 @@ const Hero = () => {
       
       {/* Ganpati Blessing at Top */}
       <div className="relative z-20 text-center mb-8 animate-fade-in">
-        <img src={heroData.ganpatiImage} alt="श्री गणेशजी" className="w-20 h-20 mx-auto mb-3 rounded-full shadow-lg" />
+        <img src={ganpatiImage} alt="श्री गणेशजी" className="w-20 h-20 mx-auto mb-3 rounded-full shadow-lg" />
         
         {/* Swastik Icon with Lamps */}
         <div className="flex justify-center items-center mb-3 space-x-6">
           {/* Left Lamp */}
-          <img src="/src/assets/diva.png" alt="दिवा" className="w-16 h-16 animate-pulse" />
+          <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse" />
           
           {/* Swastik Icon */}
-          <img 
-            src={heroData.swastikImage} 
-            alt="स्वस्तिक" 
-            className="w-20 h-20 animate-pulse" 
-            style={{ filter: 'brightness(0) invert(1)' }}
-          />
+          <img src="/lovable-uploads/7dfe42c5-11dd-4c21-afed-9975d6094abb.png" alt="स्वस्तिक" className="w-20 h-20 animate-pulse" />
           
           {/* Right Lamp */}
-          <img src="/src/assets/diva.png" alt="दिवा" className="w-16 h-16 animate-pulse delay-100" />
+          <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse delay-100" />
         </div>
         
         <p 
@@ -85,8 +81,8 @@ const Hero = () => {
         
         {/* Haldi Kunku Circles */}
         <div className="flex justify-center mt-4 space-x-4">
-          <div className="w-6 h-6 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
-          <div className="w-6 h-6 bg-yellow-400 rounded-full animate-pulse delay-150 shadow-lg"></div>
+          <div className="w-8 h-8 bg-red-500 rounded-full animate-pulse shadow-lg"></div>
+          <div className="w-8 h-8 bg-yellow-400 rounded-full animate-pulse delay-150 shadow-lg"></div>
         </div>
       </div>
       
