@@ -136,6 +136,56 @@
     border: 1px solid rgba(212, 175, 55, 0.3);
   }
   
+  .ticker-container {
+    display: flex;
+    width: fit-content;
+    animation: ticker-scroll 20s linear infinite;
+  }
+
+  .ticker-item {
+    width: 8rem;
+    height: 10rem;
+    margin: 0 1rem;
+    flex-shrink: 0;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ticker-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+
+  @media (min-width: 640px) {
+    .ticker-item {
+      width: 10rem;
+      height: 12rem;
+      margin: 0 1.5rem;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .ticker-item {
+      width: 12rem;
+      height: 15rem;
+      margin: 0 2rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .ticker-container {
+      animation: ticker-scroll 15s linear infinite;
+    }
+    
+    .ticker-item {
+      width: 6rem;
+      height: 8rem;
+      margin: 0 0.5rem;
+    }
+  }
+
   .glass-hero {
     @apply glass rounded-3xl p-6 md:p-12 text-center backdrop-blur-3xl;
     background: rgba(139, 0, 0, 0.25);
@@ -354,6 +404,15 @@
   }
   100% {
     transform: translateX(-25%);
+  }
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-33.33%);
   }
 }
 

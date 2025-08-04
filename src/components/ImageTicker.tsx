@@ -12,13 +12,7 @@ const ImageTicker = () => {
     { src: "/lovable-uploads/95e79806-c7a8-408d-956d-8b899753e6ef.png", alt: "A5" },
     { src: "/lovable-uploads/3a1a3a0e-b664-4ad0-909d-81c9f381a2f5.png", alt: "A6" },
     { src: "/lovable-uploads/eefb8c97-f310-4283-90b9-8fcdd7215ea8.png", alt: "A7" },
-    { src: A1, alt: "Traditional A1" },
-    { src: A3, alt: "Traditional A3" },
-    { src: A5, alt: "Traditional A5" },
   ];
-
-  // Create a seamless infinite loop by duplicating the array multiple times
-  const duplicatedImages = [...tickerImages, ...tickerImages, ...tickerImages, ...tickerImages];
 
   return (
     <section className="w-full py-6 sm:py-8 md:py-10 bg-gradient-to-r from-wedding-deep-maroon via-wedding-maroon to-wedding-deep-maroon overflow-hidden">
@@ -31,21 +25,49 @@ const ImageTicker = () => {
 
       {/* Horizontal Scrolling Ticker */}
       <div className="relative w-full overflow-hidden">
-        <div className="flex animate-scroll-infinite whitespace-nowrap">
-          {duplicatedImages.map((image, index) => (
+        <div className="ticker-container">
+          {/* First set of images */}
+          {tickerImages.map((image, index) => (
             <div
-              key={index}
-              className="flex-shrink-0 w-36 h-48 sm:w-44 sm:h-56 md:w-52 md:h-64 lg:w-60 lg:h-72 xl:w-68 xl:h-80 mx-2 sm:mx-3 md:mx-4 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
-              style={{ minWidth: 'fit-content' }}
+              key={`set1-${index}`}
+              className="ticker-item"
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover bg-gradient-to-br from-wedding-cream/10 to-wedding-maroon/10"
+                className="w-full h-full object-cover rounded-lg"
                 loading="lazy"
                 onError={(e) => {
                   console.log('Image failed to load:', image.src);
                 }}
+              />
+            </div>
+          ))}
+          {/* Second set of images for seamless loop */}
+          {tickerImages.map((image, index) => (
+            <div
+              key={`set2-${index}`}
+              className="ticker-item"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
+              />
+            </div>
+          ))}
+          {/* Third set for wider screens */}
+          {tickerImages.map((image, index) => (
+            <div
+              key={`set3-${index}`}
+              className="ticker-item"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover rounded-lg"
+                loading="lazy"
               />
             </div>
           ))}

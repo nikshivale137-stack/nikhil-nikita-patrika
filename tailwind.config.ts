@@ -107,6 +107,10 @@ export default {
 				'scroll-infinite': {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-50%)' }
+				},
+				'ticker-scroll': {
+					'0%': { transform: 'translateX(0%)' },
+					'100%': { transform: 'translateX(-33.33%)' }
 				}
 			},
 			animation: {
@@ -115,7 +119,8 @@ export default {
 				'scroll-x': 'scroll-x 25s linear infinite',
 				'scroll-x-fast': 'scroll-x-fast 15s linear infinite',
 				'scroll-x-mobile': 'scroll-x-fast 8s linear infinite',
-				'scroll-infinite': 'scroll-infinite 10s linear infinite'
+				'scroll-infinite': 'scroll-infinite 10s linear infinite',
+				'ticker-scroll': 'ticker-scroll 20s linear infinite'
 			}
 		}
 	},

@@ -66,7 +66,7 @@ const Hero = () => {
           <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse" />
           
           {/* Swastik Icon */}
-          <img src="/lovable-uploads/7dfe42c5-11dd-4c21-afed-9975d6094abb.png" alt="स्वस्तिक" className="w-20 h-20 animate-pulse" />
+          <img src="/lovable-uploads/swastik-new.png" alt="स्वस्तिक" className="w-20 h-20 animate-pulse" />
           
           {/* Right Lamp */}
           <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse delay-100" />
@@ -196,18 +196,6 @@ const Hero = () => {
           </p>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2">
-          <div 
-            className="w-6 h-10 border-2 rounded-full flex justify-center"
-            style={{ borderColor: heroData.primaryColor }}
-          >
-            <div 
-              className="w-1 h-3 rounded-full mt-2 animate-bounce"
-              style={{ backgroundColor: heroData.primaryColor }}
-            ></div>
-          </div>
-        </div>
       </div>
     </section>
   );
