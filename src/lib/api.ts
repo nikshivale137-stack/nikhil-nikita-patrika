@@ -263,7 +263,7 @@ class ApiService {
         venueLink: "https://maps.app.goo.gl/yeZgTUWEhBRYoHCCA",
         ganpatiImage: "/src/assets/ganpati.jpg",
         kalashImage: "/src/assets/kalash-wedding.jpg",
-        swastikImage: "/src/assets/swastik-icon.png",
+        swastikImage: "/lovable-uploads/swastik-new.png",
         leftLampImage: "/lovable-uploads/lamp-icon-left.svg",
         rightLampImage: "/lovable-uploads/lamp-icon-right.svg",
         fontFamily: "font-kavi",
@@ -280,7 +280,7 @@ class ApiService {
           { id: "5", src: "/lovable-uploads/5b2c07c4-30b9-4ede-9bc6-b7fa6ff07ed7.png", label: "एकत्र" },
           { id: "6", src: "/lovable-uploads/ca7b32d9-0af9-47c8-8cac-c64fa1788014.png", label: "आनंदाचे क्षण" },
           { id: "7", src: "/lovable-uploads/22b31577-6312-4006-9da1-0079d97c0c49.png", label: "प्रेमाचे क्षण" },
-          { id: "8", src: "/lovable-uploads/nik4-new.png", label: "आमचे फोटो" }
+          { id: "8", src: "/lovable-uploads/973b8290-cf06-46fc-8bee-5ba35f35be3a.png", label: "आमचे फोटो" }
         ]
       },
       story: {
