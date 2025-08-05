@@ -60,13 +60,10 @@ const Hero = () => {
       <div className="relative z-20 text-center mb-8 animate-fade-in">
         <img src={ganpatiImage} alt="श्री गणेशजी" className="w-20 h-20 mx-auto mb-3 rounded-full shadow-lg" />
         
-        {/* Swastik Icon with Lamps */}
-        <div className="flex justify-center items-center mb-3 space-x-6">
+        {/* Lamps only */}
+        <div className="flex justify-center items-center mb-3 space-x-8">
           {/* Left Lamp */}
           <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse" />
-          
-          {/* Swastik Icon */}
-          <img src="/lovable-uploads/swastik-new.png" alt="स्वस्तिक" className="w-20 h-20 animate-pulse" />
           
           {/* Right Lamp */}
           <img src="/lovable-uploads/8e190c86-1bc8-4e9d-a0e4-16a0680eb577.png" alt="दिवा" className="w-16 h-16 animate-pulse delay-100" />

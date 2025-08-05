@@ -23,7 +23,6 @@ interface AdminData {
     venueLink: string;
     ganpatiImage: string;
     kalashImage: string;
-    swastikImage: string;
     leftLampImage: string;
     rightLampImage: string;
     fontFamily: string;
@@ -262,8 +261,7 @@ class ApiService {
         venue: "कोऱ्हाळे लॉन्स, उरुळी कांचन, पुणे",
         venueLink: "https://maps.app.goo.gl/yeZgTUWEhBRYoHCCA",
         ganpatiImage: "/lovable-uploads/b31c4c2d-6820-47f8-93e9-3dcd437a9e0f.png",
-        kalashImage: "/lovable-uploads/bb2b0908-c061-4f3a-a19e-c1815b56ca26.png",
-        swastikImage: "/lovable-uploads/7dfe42c5-11dd-4c21-afed-9975d6094abb.png",
+        kalashImage: "/lovable-uploads/212d81c3-bf2c-4917-b1cd-11dabc29500b.png",
         leftLampImage: "/lovable-uploads/lamp-icon-left.svg",
         rightLampImage: "/lovable-uploads/lamp-icon-right.svg",
         fontFamily: "font-kavi",
