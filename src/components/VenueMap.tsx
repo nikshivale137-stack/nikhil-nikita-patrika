@@ -42,7 +42,7 @@ const VenueMap = () => {
             </div>
 
             <div className="glass-card">
-              <h4 className="font-serif text-xl text-wedding-gold mb-3 text-center">
+              <h4 className="font-serif text-xl text-wedding-gold mb-3 text-amber-200">
                 प्रवास माहिती
               </h4>
               <ul className="space-y-2 text-wedding-cream/80 text-sm">
