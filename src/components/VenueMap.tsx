@@ -16,7 +16,7 @@ const VenueMap = () => {
             <div className="glass-card">
               <div className="flex items-center mb-4">
                 <MapPin className="text-wedding-gold mr-3" size={28} />
-                <h3 className="font-serif text-2xl text-wedding-maroon text-slate-100">कोऱ्हाळे लॉन्स</h3>
+                <h3 className="font-serif text-2xl text-wedding-maroon text-slate-200">कोऱ्हाळे लॉन्स</h3>
               </div>
               <p className="text-wedding-cream/90 leading-relaxed mb-4">
                 उरुळी कांचन, पुणे येथील आमच्या सुंदर विवाह स्थळावर आमच्यासोबत सामील व्हा, 
