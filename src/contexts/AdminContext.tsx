@@ -45,7 +45,10 @@ export const AdminProvider: React.FC<AdminProviderProps> = ({ children }) => {
     if (adminData) {
       const updatedData = { ...adminData, ...data };
       setAdminData(updatedData);
-      apiService.updateAdminData(updatedData);
+      // Save the updated data immediately to localStorage
+      apiService.saveAdminData(updatedData).catch(error => {
+        console.error('Failed to save admin data:', error);
+      });
     }
   };
 
