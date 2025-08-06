@@ -105,28 +105,11 @@ class ApiService {
       formData.append('file', file);
       formData.append('projectId', PROJECT_ID);
 
-      // For demo purposes, we'll simulate the upload
-      // In production, this would be your actual Lovable API endpoint
-      const response = await fetch(`${LOVABLE_API_BASE}/upload`, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          // Add your Lovable API key here
-          'Authorization': `Bearer ${process.env.REACT_APP_LOVABLE_API_KEY}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Upload failed');
-      }
-
-      const data = await response.json();
-      return {
-        url: data.url,
-        id: data.id
-      };
+      // For demo purposes, we'll simulate the upload and use fallback
+      console.log('Simulating upload for demo purposes');
+      throw new Error('Using fallback upload method');
     } catch (error) {
-      console.error('Upload error:', error);
+      console.log('Using fallback upload method:', error);
       
       // Fallback: convert to base64 for demo
       return new Promise((resolve) => {
@@ -150,25 +133,11 @@ class ApiService {
       formData.append('projectId', PROJECT_ID);
       formData.append('type', 'font');
 
-      const response = await fetch(`${LOVABLE_API_BASE}/upload-font`, {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Authorization': `Bearer ${process.env.REACT_APP_LOVABLE_API_KEY}`,
-        },
-      });
-
-      if (!response.ok) {
-        throw new Error('Font upload failed');
-      }
-
-      const data = await response.json();
-      return {
-        url: data.url,
-        id: data.id
-      };
+      // For demo purposes, using fallback
+      console.log('Simulating font upload for demo purposes');
+      throw new Error('Using fallback font upload method');
     } catch (error) {
-      console.error('Font upload error:', error);
+      console.log('Using fallback font upload method:', error);
       
       // Fallback: convert to base64 for demo
       return new Promise((resolve) => {
@@ -184,58 +153,38 @@ class ApiService {
     }
   }
 
-  // Save admin data to Lovable
+  // Save admin data to localStorage (demo mode)
   async saveAdminData(data: AdminData): Promise<void> {
     try {
-      const response = await fetch(`${LOVABLE_API_BASE}/projects/${PROJECT_ID}/admin-data`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${process.env.REACT_APP_LOVABLE_API_KEY}`,
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error('Save failed');
-      }
-
-      // Also save to localStorage as backup
+      // For demo purposes, save directly to localStorage
       localStorage.setItem('weddingAdminData', JSON.stringify(data));
+      console.log('Admin data saved to localStorage');
     } catch (error) {
       console.error('Save error:', error);
-      // Fallback to localStorage
-      localStorage.setItem('weddingAdminData', JSON.stringify(data));
+      throw error;
     }
   }
 
-  // Load admin data from Lovable
+  // Load admin data from localStorage (demo mode)
   async loadAdminData(): Promise<AdminData> {
     try {
-      const response = await fetch(`${LOVABLE_API_BASE}/projects/${PROJECT_ID}/admin-data`, {
-        headers: {
-          'Authorization': `Bearer ${process.env.REACT_APP_LOVABLE_API_KEY}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        this.adminData = data;
-        return data;
+      // Check localStorage first
+      const localData = localStorage.getItem('weddingAdminData');
+      if (localData) {
+        this.adminData = JSON.parse(localData);
+        console.log('Admin data loaded from localStorage');
+        return this.adminData;
       }
     } catch (error) {
       console.error('Load error:', error);
     }
 
-    // Fallback to localStorage
-    const localData = localStorage.getItem('weddingAdminData');
-    if (localData) {
-      this.adminData = JSON.parse(localData);
-      return this.adminData;
-    }
-
-    // Return default data
-    return this.getDefaultAdminData();
+    // Return default data and save it
+    const defaultData = this.getDefaultAdminData();
+    this.adminData = defaultData;
+    await this.saveAdminData(defaultData);
+    console.log('Using default admin data');
+    return defaultData;
   }
 
   // Get current admin data
