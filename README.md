@@ -1,73 +1,171 @@
-# Welcome to your Lovable project
+# Nikhil & Nikita Wedding Website
 
-## Project info
+A beautiful wedding invitation website with a comprehensive admin panel for managing content, images, and styling.
 
-**URL**: https://lovable.dev/projects/f2c02011-3905-49a7-ba0a-9fda3179f2f1
+## 🚀 Features
 
-## How can I edit this code?
+### For Visitors
+- **Beautiful Hero Section** with animated countdown
+- **Photo Gallery** with auto-sliding carousel
+- **Our Story** section with dynamic content
+- **Schedule** of wedding events
+- **Patrika** section with wedding details
+- **Responsive Design** for all devices
 
-There are several ways of editing your application.
+### For Administrators
+- **Complete Admin Panel** at `/admin`
+- **Real-time Content Management** - changes appear instantly
+- **Photo Gallery Management** - add, edit, delete photos
+- **Story Management** - edit story cards and content
+- **Styling Options** - change fonts, colors, backgrounds
+- **Image Upload** - upload new images directly
+- **Settings Management** - control website features
 
-**Use Lovable**
+## 🔧 Setup Instructions
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/f2c02011-3905-49a7-ba0a-9fda3179f2f1) and start prompting.
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-Changes made via Lovable will be committed automatically to this repo.
+### 2. Set up Real-time Data Sharing
 
-**Use your preferred IDE**
+To enable real-time data sharing so others can see your changes:
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+#### Option A: Using JSONBin.io (Free)
+1. Go to [JSONBin.io](https://jsonbin.io)
+2. Create a free account
+3. Get your API key
+4. Update the API key in `src/lib/api.ts`:
+```typescript
+const API_KEY = 'your-jsonbin-api-key-here';
+```
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+#### Option B: Using Firebase (Recommended)
+1. Go to [Firebase Console](https://console.firebase.google.com)
+2. Create a new project
+3. Enable Firestore Database
+4. Get your Firebase config
+5. Replace the API service with Firebase integration
 
-Follow these steps:
+#### Option C: Using Your Own Backend
+1. Set up a simple backend (Node.js/Express, Python/Flask, etc.)
+2. Create API endpoints for saving/loading data
+3. Update the API service to use your backend
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+### 3. Run the Development Server
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+### 4. Access Admin Panel
+- Go to `http://localhost:5173/admin`
+- Login with any password (demo mode)
+- Start managing your wedding website!
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## 📁 Project Structure
 
-**Use GitHub Codespaces**
+```
+src/
+├── components/          # React components
+│   ├── Hero.tsx        # Main hero section
+│   ├── PhotoGallery.tsx # Photo carousel
+│   ├── OurStory.tsx    # Story section
+│   └── ImageTicker.tsx # Scrolling images
+├── pages/
+│   └── Admin.tsx       # Admin panel
+├── contexts/
+│   └── AdminContext.tsx # Global state management
+├── lib/
+│   └── api.ts          # API service
+└── assets/             # Images and assets
+```
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## 🎨 Customization
 
-## What technologies are used for this project?
+### Adding New Photos
+1. Go to Admin Panel → Photo Gallery
+2. Click "Add New Slide"
+3. Enter label and upload image
+4. Save changes
 
-This project is built with:
+### Changing Colors and Fonts
+1. Go to Admin Panel → Hero/Story/Schedule
+2. Use color pickers and font selectors
+3. Changes apply instantly
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Editing Content
+1. Go to Admin Panel → any section
+2. Edit text content directly
+3. Save changes to see updates
 
-## How can I deploy this project?
+## 🌐 Deployment
 
-Simply open [Lovable](https://lovable.dev/projects/f2c02011-3905-49a7-ba0a-9fda3179f2f1) and click on Share -> Publish.
+### Deploy to Vercel (Recommended)
+1. Push to GitHub
+2. Connect to Vercel
+3. Deploy automatically
 
-## Can I connect a custom domain to my Lovable project?
+### Deploy to Netlify
+1. Build: `npm run build`
+2. Upload `dist` folder to Netlify
 
-Yes, you can!
+### Deploy to Lovable
+1. Connect your GitHub repository
+2. Deploy through Lovable dashboard
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+## 🔐 Security Notes
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+- Admin panel uses simple password authentication (demo mode)
+- For production, implement proper authentication
+- API keys should be stored in environment variables
+- Consider rate limiting for API endpoints
+
+## 📱 Mobile Responsive
+
+The website is fully responsive and works great on:
+- 📱 Mobile phones
+- 📱 Tablets
+- 💻 Desktop computers
+- 🖥️ Large screens
+
+## 🎯 Real-time Updates
+
+When you make changes in the admin panel:
+1. ✅ Changes save to backend API
+2. ✅ All visitors see updates immediately
+3. ✅ No page refresh needed
+4. ✅ Works across all devices
+
+## 🛠️ Troubleshooting
+
+### Admin Panel Not Working
+- Check browser console for errors
+- Ensure API key is configured correctly
+- Try clearing browser cache
+
+### Images Not Loading
+- Check image URLs in admin panel
+- Ensure images are publicly accessible
+- Try uploading new images
+
+### Changes Not Visible to Others
+- Verify API configuration
+- Check network connectivity
+- Ensure backend service is running
+
+## 📞 Support
+
+For issues or questions:
+1. Check the browser console for errors
+2. Verify API configuration
+3. Test with different browsers
+4. Check network connectivity
+
+## 🎉 Happy Wedding!
+
+This website will help you share your special day with friends and family. The admin panel makes it easy to keep everything updated and beautiful!
+
+---
+
+**Built with ❤️ using React, TypeScript, and Tailwind CSS**

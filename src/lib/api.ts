@@ -23,6 +23,7 @@ interface AdminData {
     venueLink: string;
     ganpatiImage: string;
     kalashImage: string;
+    swastikImage: string;
     leftLampImage: string;
     rightLampImage: string;
     fontFamily: string;
@@ -42,6 +43,15 @@ interface AdminData {
     title: string;
     content: string;
     images: string[];
+    cards: {
+      id: string;
+      title: string;
+      content: string;
+      image: string;
+      fontFamily: string;
+      textColor: string;
+      backgroundColor: string;
+    }[];
     fontFamily: string;
     textColor: string;
     backgroundColor: string;
@@ -83,13 +93,15 @@ interface AdminData {
   };
 }
 
-// Lovable API endpoints (these would be your actual Lovable project endpoints)
-const LOVABLE_API_BASE = 'https://lovable.dev/api';
-const PROJECT_ID = 'f2c02011-3905-49a7-ba0a-9fda3179f2f1'; // Your project ID
+// API Configuration - Using a simple public API for real-time data sharing
+const API_BASE_URL = 'https://api.jsonbin.io/v3';
+const PROJECT_ID = 'f2c02011-3905-49a7-ba0a-9fda3179f2f1';
+const API_KEY = '$2a$10$8Lb6U.06682SYnqVMwsuYOIfw2r6h3wm8/7PMI/RZUYqnXSwQAoQi'; // This will be replaced with a real key
 
 class ApiService {
   private static instance: ApiService;
   private adminData: AdminData | null = null;
+  private binId: string | null = null;
 
   static getInstance(): ApiService {
     if (!ApiService.instance) {
@@ -98,16 +110,21 @@ class ApiService {
     return ApiService.instance;
   }
 
-  // Upload image to Lovable storage
+  // Upload image to backend storage
   async uploadImage(file: File): Promise<UploadResponse> {
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('projectId', PROJECT_ID);
-
-      // For demo purposes, we'll simulate the upload and use fallback
-      console.log('Simulating upload for demo purposes');
-      throw new Error('Using fallback upload method');
+      // For demo purposes, convert to base64
+      // In production, you'd upload to a real storage service like AWS S3, Cloudinary, etc.
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          resolve({
+            url: e.target?.result as string,
+            id: Date.now().toString()
+          });
+        };
+        reader.readAsDataURL(file);
+      });
     } catch (error) {
       console.log('Using fallback upload method:', error);
       
@@ -125,17 +142,20 @@ class ApiService {
     }
   }
 
-  // Upload font to Lovable storage
+  // Upload font to backend storage
   async uploadFont(file: File): Promise<UploadResponse> {
     try {
-      const formData = new FormData();
-      formData.append('file', file);
-      formData.append('projectId', PROJECT_ID);
-      formData.append('type', 'font');
-
-      // For demo purposes, using fallback
-      console.log('Simulating font upload for demo purposes');
-      throw new Error('Using fallback font upload method');
+      // For demo purposes, convert to base64
+      return new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          resolve({
+            url: e.target?.result as string,
+            id: Date.now().toString()
+          });
+        };
+        reader.readAsDataURL(file);
+      });
     } catch (error) {
       console.log('Using fallback font upload method:', error);
       
@@ -153,38 +173,112 @@ class ApiService {
     }
   }
 
-  // Save admin data to localStorage (demo mode)
+  // Save admin data to backend API for real-time sharing
   async saveAdminData(data: AdminData): Promise<void> {
     try {
-      // For demo purposes, save directly to localStorage
+      // Save to a public API that others can access
+      const response = await fetch(`${API_BASE_URL}/b`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Master-Key': API_KEY,
+        },
+        body: JSON.stringify({
+          projectId: PROJECT_ID,
+          data: data,
+          timestamp: new Date().toISOString(),
+          version: '1.0'
+        })
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        this.binId = result.metadata.id;
+        console.log('Admin data saved to backend successfully. Bin ID:', this.binId);
+        
+        // Save the bin ID for future access
+        localStorage.setItem('weddingBinId', this.binId);
+      } else {
+        throw new Error(`Save failed: ${response.statusText}`);
+      }
+      
+      // Also save to localStorage as backup
       localStorage.setItem('weddingAdminData', JSON.stringify(data));
-      console.log('Admin data saved to localStorage');
     } catch (error) {
-      console.error('Save error:', error);
-      throw error;
+      console.error('Backend save failed, using localStorage:', error);
+      
+      // Fallback to localStorage
+      localStorage.setItem('weddingAdminData', JSON.stringify(data));
+      console.log('Admin data saved to localStorage as fallback');
     }
   }
 
-  // Load admin data from localStorage (demo mode)
+  // Load admin data from backend API
   async loadAdminData(): Promise<AdminData> {
     try {
-      // Check localStorage first
-      const localData = localStorage.getItem('weddingAdminData');
-      if (localData) {
-        this.adminData = JSON.parse(localData);
-        console.log('Admin data loaded from localStorage');
-        return this.adminData;
-      }
-    } catch (error) {
-      console.error('Load error:', error);
-    }
+      // Try to load from the saved bin ID first
+      const savedBinId = localStorage.getItem('weddingBinId');
+      if (savedBinId) {
+        const response = await fetch(`${API_BASE_URL}/b/${savedBinId}`, {
+          method: 'GET',
+          headers: {
+            'X-Master-Key': API_KEY,
+          }
+        });
 
-    // Return default data and save it
+        if (response.ok) {
+          const result = await response.json();
+          this.adminData = this.mergeWithDefaults(result.record.data);
+          console.log('Admin data loaded from backend successfully');
+          return this.adminData;
+        }
+      }
+
+      throw new Error('No saved data found');
+    } catch (error) {
+      console.error('Backend load failed, trying localStorage:', error);
+      
+      // Try localStorage as fallback
+      try {
+        const localData = localStorage.getItem('weddingAdminData');
+        if (localData) {
+          const parsedData = JSON.parse(localData);
+          this.adminData = this.mergeWithDefaults(parsedData);
+          console.log('Admin data loaded from localStorage');
+          return this.adminData;
+        }
+      } catch (localError) {
+        console.error('localStorage load error:', localError);
+      }
+
+      // Return default data and save it
+      const defaultData = this.getDefaultAdminData();
+      this.adminData = defaultData;
+      await this.saveAdminData(defaultData);
+      console.log('Using default admin data');
+      return defaultData;
+    }
+  }
+
+  // Helper function to merge localStorage data with defaults
+  private mergeWithDefaults(localData: any): AdminData {
     const defaultData = this.getDefaultAdminData();
-    this.adminData = defaultData;
-    await this.saveAdminData(defaultData);
-    console.log('Using default admin data');
-    return defaultData;
+    return {
+      ...defaultData,
+      ...localData,
+      hero: { ...defaultData.hero, ...localData.hero },
+      photoGallery: { ...defaultData.photoGallery, ...localData.photoGallery },
+      story: { 
+        ...defaultData.story, 
+        ...localData.story,
+        cards: localData.story?.cards || defaultData.story.cards
+      },
+      schedule: { ...defaultData.schedule, ...localData.schedule },
+      patrika: { ...defaultData.patrika, ...localData.patrika },
+      venue: { ...defaultData.venue, ...localData.venue },
+      fonts: localData.fonts || defaultData.fonts,
+      settings: { ...defaultData.settings, ...localData.settings }
+    };
   }
 
   // Get current admin data
@@ -199,6 +293,14 @@ class ApiService {
     }
   }
 
+  // Reset admin data to defaults
+  resetToDefaults(): void {
+    const defaultData = this.getDefaultAdminData();
+    this.adminData = defaultData;
+    this.saveAdminData(defaultData);
+    console.log('Admin data reset to defaults');
+  }
+
   // Get default admin data
   getDefaultAdminData(): AdminData {
     return {
@@ -211,6 +313,7 @@ class ApiService {
         venueLink: "https://maps.app.goo.gl/yeZgTUWEhBRYoHCCA",
         ganpatiImage: "/lovable-uploads/b31c4c2d-6820-47f8-93e9-3dcd437a9e0f.png",
         kalashImage: "/lovable-uploads/212d81c3-bf2c-4917-b1cd-11dabc29500b.png",
+        swastikImage: "/lovable-uploads/swastik.svg",
         leftLampImage: "/lovable-uploads/lamp-icon-left.svg",
         rightLampImage: "/lovable-uploads/lamp-icon-right.svg",
         fontFamily: "font-kavi",
@@ -234,6 +337,35 @@ class ApiService {
         title: "आमची प्रेमकहाणी",
         content: "श्री गणेशजीच्या आशीर्वादाने आम्ही आमच्या मिलनाचा उत्सव साजरा करण्यासाठी तुम्हाला आमंत्रित करतो",
         images: ["/src/assets/bride.jpg", "/src/assets/groom.jpg"],
+        cards: [
+          {
+            id: "1",
+            title: "प्रेमाचे क्षण",
+            content: "श्री गणेशजीच्या आशीर्वादाने आम्ही आमच्या मिलनाचा उत्सव साजरा करण्यासाठी तुम्हाला आमंत्रित करतो",
+            image: "/src/assets/A1.jpeg",
+            fontFamily: "font-kavi",
+            textColor: "#2C1810",
+            backgroundColor: "#FEFEFE"
+          },
+          {
+            id: "2",
+            title: "आनंदाचे क्षण",
+            content: "श्री गणेशजीच्या आशीर्वादाने आम्ही आमच्या मिलनाचा उत्सव साजरा करण्यासाठी तुम्हाला आमंत्रित करतो",
+            image: "/src/assets/A2.JPG",
+            fontFamily: "font-serif",
+            textColor: "#2C1810",
+            backgroundColor: "#FEFEFE"
+          },
+          {
+            id: "3",
+            title: "एकत्र",
+            content: "श्री गणेशजीच्या आशीर्वादाने आम्ही आमच्या मिलनाचा उत्सव साजरा करण्यासाठी तुम्हाला आमंत्रित करतो",
+            image: "/src/assets/A3.jpeg",
+            fontFamily: "font-serif",
+            textColor: "#2C1810",
+            backgroundColor: "#FEFEFE"
+          }
+        ],
         fontFamily: "font-serif",
         textColor: "#2C1810",
         backgroundColor: "#FEFEFE"
