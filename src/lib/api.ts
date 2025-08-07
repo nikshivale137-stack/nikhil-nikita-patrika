@@ -324,9 +324,9 @@ class ApiService {
       photoGallery: {
         slides: [
           { id: "1", src: "/lovable-uploads/62454a95-bb52-42f4-81b4-c75f03fce9f4.png", label: "निखिल आणि निकिता" },
-          { id: "2", src: "/lovable-uploads/64900679-100e-440c-8e6a-74d5d24c10f5.png", label: "निखिल" },
-          { id: "3", src: "/lovable-uploads/147219bf-efe0-44a1-a29c-a39e52e341db.png", label: "निकिता" },
-          { id: "4", src: "/lovable-uploads/22b31577-6312-4006-9da1-0079d97c0c49.png", label: "आमचे क्षण" },
+          { id: "2", src: "/lovable-uploads/pic1.JPG", label: "निखिल" },
+          { id: "3", src: "/lovable-uploads/pic2.jpeg", label: "निकिता" },
+          { id: "4", src: "/lovable-uploads/pic3.JPG", label: "आमचे क्षण" },
           { id: "5", src: "/lovable-uploads/5b2c07c4-30b9-4ede-9bc6-b7fa6ff07ed7.png", label: "एकत्र" },
           { id: "6", src: "/lovable-uploads/ca7b32d9-0af9-47c8-8cac-c64fa1788014.png", label: "आनंदाचे क्षण" },
           { id: "7", src: "/lovable-uploads/22b31577-6312-4006-9da1-0079d97c0c49.png", label: "प्रेमाचे क्षण" },
