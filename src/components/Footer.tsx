@@ -52,23 +52,6 @@ const Footer = () => {
           <Heart className="text-wedding-maroon" size={16} fill="currentColor" />
         </div>
 
-        {/* Swastik Symbol */}
-        <div className="flex justify-center mb-8">
-          <div className="glass-card p-6 max-w-xs">
-            <img 
-              src="/lovable-uploads/7dfe42c5-11dd-4c21-afed-9975d6094abb.png" 
-              alt="स्वस्तिक" 
-              className="w-16 h-16 mx-auto mb-3 animate-pulse"
-            />
-            <p className="text-wedding-gold text-center font-serif text-sm">
-              ॐ स्वस्ति न इन्द्रो वृद्धश्रवाः
-            </p>
-            <p className="text-wedding-cream/80 text-center text-xs mt-1">
-              शुभ लाभ
-            </p>
-          </div>
-        </div>
-
         {/* Copyright */}
         <div className="text-wedding-cream/60 text-xs">
           <p>© २०२५ निखिल आणि निकिता विवाह. प्रेम आणि आशीर्वादाने तयार केले.</p>
