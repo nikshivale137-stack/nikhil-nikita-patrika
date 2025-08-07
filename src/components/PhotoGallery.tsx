@@ -6,28 +6,9 @@ const PhotoGallery = () => {
   const { adminData } = useAdminData();
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Get slides and labels from admin data with fallback
-  const slides = adminData?.photoGallery?.slides?.map(slide => slide.src) || [
-    "/lovable-uploads/62454a95-bb52-42f4-81b4-c75f03fce9f4.png",
-    "/lovable-uploads/64900679-100e-440c-8e6a-74d5d24c10f5.png",
-    "/lovable-uploads/147219bf-efe0-44a1-a29c-a39e52e341db.png",
-    "/lovable-uploads/22b31577-6312-4006-9da1-0079d97c0c49.png",
-    "/lovable-uploads/5b2c07c4-30b9-4ede-9bc6-b7fa6ff07ed7.png",
-    "/lovable-uploads/ca7b32d9-0af9-47c8-8cac-c64fa1788014.png",
-    "/lovable-uploads/22b31577-6312-4006-9da1-0079d97c0c49.png",
-    "/lovable-uploads/973b8290-cf06-46fc-8bee-5ba35f35be3a.png"
-  ];
-  
-  const slideLabels = adminData?.photoGallery?.slides?.map(slide => slide.label) || [
-    "निखिल आणि निकिता",
-    "निखिल",
-    "निकिता",
-    "आमचे क्षण",
-    "एकत्र",
-    "आनंदाचे क्षण",
-    "प्रेमाचे क्षण",
-    "आमचे फोटो"
-  ];
+  // Get slides and labels from admin data
+  const slides = adminData?.photoGallery?.slides?.map(slide => slide.src) || [];
+  const slideLabels = adminData?.photoGallery?.slides?.map(slide => slide.label) || [];
   
   useEffect(() => {
     if (slides.length === 0) return;
@@ -49,6 +30,20 @@ const PhotoGallery = () => {
         <div className="max-w-6xl mx-auto text-center">
           <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-wedding-gold mx-auto"></div>
           <p className="mt-4 text-wedding-gold">Loading...</p>
+        </div>
+      </section>
+    );
+  }
+
+  // Show empty state if no slides
+  if (slides.length === 0) {
+    return (
+      <section className="py-12 md:py-20 px-4 relative overflow-hidden">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl text-wedding-gold mb-4 animate-fade-in">
+            आमचे सुंदर क्षण
+          </h2>
+          <p className="text-wedding-cream text-lg">No photos available yet</p>
         </div>
       </section>
     );
