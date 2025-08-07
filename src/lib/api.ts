@@ -96,7 +96,7 @@ interface AdminData {
 // API Configuration - Using a simple public API for real-time data sharing
 const API_BASE_URL = 'https://api.jsonbin.io/v3';
 const PROJECT_ID = 'f2c02011-3905-49a7-ba0a-9fda3179f2f1';
-const API_KEY = '$2a$10$8Lb6U.06682SYnqVMwsuYOIfw2r6h3wm8/7PMI/RZUYqnXSwQAoQi'; // This will be replaced with a real key
+const API_KEY = '$2a$10$8Lb6U.06682SYnqVMwsuYOIfw2r6h3wm8/7PMI/RZUYqnXSwQAoQi'; // Demo key for testing
 
 class ApiService {
   private static instance: ApiService;

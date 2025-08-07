@@ -44,7 +44,11 @@ const Admin = () => {
     src: ""
   });
 
+  // Debug: Log that Admin component is loading
+  console.log('Admin component is loading...');
+
   const handleLogin = (password: string) => {
+    console.log('Login attempt with password:', password);
     setIsAuthenticated(true);
     localStorage.setItem('adminAuthenticated', 'true');
   };
