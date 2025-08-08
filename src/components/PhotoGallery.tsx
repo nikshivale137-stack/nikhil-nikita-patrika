@@ -15,7 +15,7 @@ const PhotoGallery = () => {
     
     const interval = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 3000); // 3 seconds timing
+    }, 1500); // 1.5 seconds timing
     return () => clearInterval(interval);
   }, [slides.length]);
 
