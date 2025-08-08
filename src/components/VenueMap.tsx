@@ -34,10 +34,6 @@ const VenueMap = () => {
                   <Navigation className="mr-2 text-wedding-gold" size={18} />
                   <span>सहज पोहोचण्यासाठी पुरेशी पार्किंग सुविधा</span>
                 </div>
-                <div className="flex items-center text-wedding-cream/80">
-                  <Phone className="mr-2 text-wedding-gold" size={18} />
-                  <span>दिशानिर्देशांसाठी संपर्क: ७२७६६१११०० - निखिल शिवले</span>
-                </div>
               </div>
             </div>
 
